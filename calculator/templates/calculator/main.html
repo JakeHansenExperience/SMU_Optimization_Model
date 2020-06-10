@@ -1,0 +1,9 @@
+{% if all_plants_list %}
+    <ul>
+    {% for plant in all_plants_list %}
+        <li>{{ plant.plant_name }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No plants are available.</p>
+{% endif %}

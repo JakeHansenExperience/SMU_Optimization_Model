@@ -1,0 +1,29 @@
+
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form  action = "{% url 'calculator:updateChoices'%}" method="post">
+
+{% csrf_token %}
+<b> Choose your plants </b> <br>
+{% for plant in all_plants_list %}
+  <input type="checkbox" name="plants" id ="plant{{forloop.counter}}" value="{{plant.plant_name}}">
+  <label for="plant{{forloop.counter}}">{{plant.plant_name}} </label><br>
+  {%endfor%}
+
+<b> Choose your Demands </b> <br>
+{% for demand in all_demands_list %}
+  <input type="checkbox" name="demands" id ="demand{{forloop.counter}}" value="{{demand.demand_name}}">
+  <label for="demand{{forloop.counter}}">{{demand.demand_name}} </label><br>
+{%endfor%}
+
+<b> Choose your Function </b> <br>
+{% for function in all_functions_list %}
+  <input type="radio" name="functions" id ="function{{forloop.counter}}" value="{{function.function_name}}">
+  <label for="function{{forloop.counter}}">{{function.function_name}} </label><br>
+{%endfor%}
+<b> Name for Optimization Output </b> <br>
+  <input id = 'Layout_Name' type='text' name='Layout_Name' value ="{{current_name}}">
+  <br>
+  <input type="submit" value="Optomize">
+</form>
